@@ -1,175 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>BMI Calculator</title>
-
-<style>
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f2d6c2; /* skin tone */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
-
-.container {
-    background: #fff;
-    width: 420px;
-    padding: 25px;
-    border-radius: 16px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-}
-
-h1 {
-    text-align: center;
-    margin-bottom: 15px;
-}
-
-.section {
-    margin-bottom: 18px;
-}
-
-.section h3 {
-    margin-bottom: 8px;
-    font-size: 16px;
-}
-
-.formula {
-    background: #f7f7f7;
-    padding: 10px;
-    border-radius: 8px;
-    font-size: 14px;
-}
-
-.input-group {
-    display: flex;
-    align-items: center;
-    margin-bottom: 12px;
-}
-
-.input-group span {
-    font-size: 22px;
-    margin-right: 10px;
-}
-
-.input-group input {
-    flex: 1;
-    padding: 10px;
-    font-size: 15px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-}
-
-button {
-    width: 100%;
-    padding: 12px;
-    background: #d88b6f;
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #c97a5f;
-}
-
-.bmi-table {
-    font-size: 14px;
-    background: #f7f7f7;
-    padding: 10px;
-    border-radius: 8px;
-}
-
-.result {
-    margin-top: 18px;
-    text-align: center;
-}
-
-.result img {
-    width: 110px;
-    margin-top: 10px;
-}
-</style>
-</head>
-
-<body>
-
-<div class="container">
-    <h1>BMI Calculator</h1>
-
-    <div class="section formula">
-        <strong>BMI Formula:</strong><br>
-        BMI = weight (kg) ÷ height² (m)
-    </div>
-
-    <div class="section">
-        <div class="input-group">
-            <span>🏋️</span>
-            <input type="number" id="weight" placeholder="Weight (kg)">
-        </div>
-
-        <div class="input-group">
-            <span>📏</span>
-            <input type="number" id="height" step="0.01" placeholder="Height (m)">
-        </div>
-
-        <button onclick="calculateBMI()">Calculate BMI</button>
-    </div>
-
-    <div class="section bmi-table">
-        <strong>BMI Classification:</strong><br>
-        BMI &lt; 18.5: Underweight<br>
-        BMI 18.5 – 24.9: Normal<br>
-        BMI 25 – 29.9: Overweight<br>
-        BMI 30 – 34.9: Obesity class I<br>
-        BMI 35 – 39.9: Obesity class II<br>
-        BMI ≥ 40: Obesity class III
-    </div>
-
-    <div class="result" id="result"></div>
+<div class="section">
+    <h3>BMI Classification Table</h3>
+    <table class="bmi-table">
+        <tr>
+            <th>BMI Range</th>
+            <th>Category</th>
+        </tr>
+        <tr>
+            <td>&lt; 18.5</td>
+            <td>Underweight</td>
+        </tr>
+        <tr>
+            <td>18.5 – 24.9</td>
+            <td>Normal</td>
+        </tr>
+        <tr>
+            <td>25 – 29.9</td>
+            <td>Overweight</td>
+        </tr>
+        <tr>
+            <td>30 – 34.9</td>
+            <td>Obesity Class I</td>
+        </tr>
+        <tr>
+            <td>35 – 39.9</td>
+            <td>Obesity Class II</td>
+        </tr>
+        <tr>
+            <td>≥ 40</td>
+            <td>Obesity Class III</td>
+        </tr>
+    </table>
 </div>
-
-<script>
-function calculateBMI() {
-    const weight = parseFloat(document.getElementById("weight").value);
-    const height = parseFloat(document.getElementById("height").value);
-    const result = document.getElementById("result");
-
-    if (!weight || !height) {
-        result.innerHTML = "<p>Please enter valid values.</p>";
-        return;
-    }
-
-    const bmi = (weight / (height * height)).toFixed(1);
-    let status = "";
-    let img = "";
-
-    if (bmi < 18.5) {
-        status = "Underweight";
-        img = "https://i.imgur.com/8QZ7Z9y.png";
-    } else if (bmi < 25) {
-        status = "Normal";
-        img = "https://i.imgur.com/0y8Ftya.png";
-    } else if (bmi < 30) {
-        status = "Overweight";
-        img = "https://i.imgur.com/jZQ3K8b.png";
-    } else {
-        status = "Obesity";
-        img = "https://i.imgur.com/2U4GvSg.png";
-    }
-
-    result.innerHTML = `
-        <h3>Your BMI is ${bmi}</h3>
-        <h2>You are <strong>${status}</strong></h2>
-        <img src="${img}" alt="${status}">
-    `;
-}
-</script>
-
-</body>
-</html>
